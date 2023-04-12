@@ -58,7 +58,6 @@ class CarController extends AbstractController
         $this->serviceDomain->createNewCar($car);
         return $this->json(
             [
-                "errors" => [],
                 "data" => "Tutaj musi być zwrotka z objektem, który został zapisany."
             ],
             Response::HTTP_CREATED
@@ -79,7 +78,6 @@ class CarController extends AbstractController
 
         return $this->json(
             [
-                "errors" => [],
                 "data" => $carDtoArray
             ],
             Response::HTTP_OK
@@ -93,7 +91,6 @@ class CarController extends AbstractController
         $carDto = $this->carConverter->toCarDto($carDomain);
         return $this->json(
             [
-                "errors" => [],
                 "data" => $carDto
             ],
             Response::HTTP_OK
@@ -128,7 +125,6 @@ class CarController extends AbstractController
 
         return $this->json(
             [
-                "errors" => [],
                 "data" => $this->carConverter->toCarDto($carDomain)
             ],
             Response::HTTP_OK
@@ -140,9 +136,6 @@ class CarController extends AbstractController
     {
         $this->serviceDomain->deleteCarById($id);
         return $this->json(
-            [
-                "errors" => []
-            ],
             Response::HTTP_OK
         );
     }
