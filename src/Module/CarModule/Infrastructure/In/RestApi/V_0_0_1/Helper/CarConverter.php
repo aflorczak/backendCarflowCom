@@ -1,12 +1,25 @@
 <?php
 
-namespace App\CarModule\Infrastructure\In\RestApi\V_0_0_1\Helper;
+namespace App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Helper;
 
-use App\CarModule\Domain\Model\CarDomain;
-use App\CarModule\Infrastructure\In\RestApi\V_0_0_1\Dto\CarDto;
+use App\Module\CarModule\Domain\Model\CarDomain;
+use App\Module\CarModule\Domain\Model\NewCarDomain;
+use App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Dto\CarDto;
+use App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Dto\NewCarDto;
 
 class CarConverter
 {
+
+    public function toNewCarDomain(NewCarDto $carDto): NewCarDomain
+    {
+        $newCarDomain = new NewCarDomain();
+        $newCarDomain->setStatus($carDto->getStatus());
+        $newCarDomain->setBrand($carDto->getBrand());
+        $newCarDomain->setModel($carDto->getModel());
+        $newCarDomain->setVin($carDto->getVin());
+        return $newCarDomain;
+    }
+
     public function toCarDomain(CarDto $carDto): CarDomain
     {
         $carDomain = new CarDomain();

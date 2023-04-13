@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CarModule\Infrastructure\In\RestApi\V_0_0_1\Helper;
+namespace App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Helper;
 
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 

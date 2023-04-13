@@ -1,12 +1,24 @@
 <?php
 
-namespace App\CarModule\Infrastructure\Out\Database\Helper;
+namespace App\Module\CarModule\Infrastructure\Out\Database\Helper;
 
-use App\CarModule\Domain\Model\CarDomain;
-use App\CarModule\Infrastructure\Out\Database\Entity\Car;
+use App\Module\CarModule\Domain\Model\CarDomain;
+use App\Module\CarModule\Domain\Model\NewCarDomain;
+use App\Module\CarModule\Infrastructure\Out\Database\Entity\Car;
 
 class CarConverter
 {
+    public function toNewEntity(NewCarDomain $newCarDomain): Car
+    {
+        $car = new Car();
+        $car->setId(0);
+        $car->setStatus($newCarDomain->getStatus());
+        $car->setBrand($newCarDomain->getBrand());
+        $car->setModel($newCarDomain->getModel());
+        $car->setVin($newCarDomain->getVin());
+        return $car;
+    }
+
     public function toEntity(CarDomain $carDomain): Car
     {
         $car = new Car();

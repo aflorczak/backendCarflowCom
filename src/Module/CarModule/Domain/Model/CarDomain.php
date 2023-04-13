@@ -1,10 +1,8 @@
 <?php
 
-namespace App\CarModule\Infrastructure\In\RestApi\V_0_0_1\Dto;
+namespace App\Module\CarModule\Domain\Model;
 
-use App\CarModule\Enums\CarStatus;
-
-class CarDto
+class CarDomain
 {
     private int $id;
     private string $status;
@@ -12,9 +10,7 @@ class CarDto
     private string $model;
     private string $vin;
 
-    public function __construct()
-    {
-    }
+    public function __construct(){}
 
     public function getId(): int
     {
@@ -35,6 +31,7 @@ class CarDto
     {
         $this->status = $status;
     }
+
 
     public function getBrand(): string
     {
@@ -65,8 +62,4 @@ class CarDto
     {
         $this->vin = $vin;
     }
-
-
-
-
 }

@@ -1,28 +1,15 @@
 <?php
 
-namespace App\CarModule\Domain\Model;
+namespace App\Module\CarModule\Domain\Model;
 
-use App\CarModule\Enums\CarStatus;
-
-class CarDomain
+class NewCarDomain
 {
-    private int $id;
     private string $status;
     private string $brand;
     private string $model;
     private string $vin;
 
     public function __construct(){}
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
 
     public function getStatus(): string
     {
@@ -33,7 +20,6 @@ class CarDomain
     {
         $this->status = $status;
     }
-
 
     public function getBrand(): string
     {
@@ -64,4 +50,6 @@ class CarDomain
     {
         $this->vin = $vin;
     }
+
+
 }

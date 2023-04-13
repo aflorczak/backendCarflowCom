@@ -12,8 +12,8 @@ doctrine:
         mappings:
             CarModule:
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/CarModule/Infrastructure/Out/Database/Entity'
-                prefix: 'App\CarModule\Infrastructure\Out\Database\Entity'
+                dir: '%kernel.project_dir%/src/Module/CarModule/Infrastructure/Out/Database/Entity'
+                prefix: 'App\Module\CarModule\Infrastructure\Out\Database\Entity'
                 alias: CarModule
 
             App:

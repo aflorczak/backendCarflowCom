@@ -1,11 +1,12 @@
 <?php
 
-namespace App\CarModule\Infrastructure\In\RestApi\V_0_0_1\Controller;
+namespace App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Controller;
 
-use App\CarModule\Domain\Service\ServiceDomain;
-use App\CarModule\Infrastructure\In\RestApi\V_0_0_1\Dto\CarDto;
-use App\CarModule\Infrastructure\In\RestApi\V_0_0_1\Helper\CarConverter;
-use App\CarModule\Infrastructure\In\RestApi\V_0_0_1\Helper\CarValidator;
+use App\Module\CarModule\Domain\Service\ServiceDomain;
+use App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Dto\CarDto;
+use App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Dto\NewCarDto;
+use App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Helper\CarConverter;
+use App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Helper\CarValidator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,19 +47,21 @@ class CarController extends AbstractController
         $this->carValidator->statusValidator($status);
         $this->carValidator->vinValidator($vin);
 
-        $carDto = new CarDto();
-        $carDto->setId(0); // add custom NewCarDto class and remove this
-        $carDto->setStatus($status);
-        $carDto->setBrand($brand);
-        $carDto->setModel($model);
-        $carDto->setVin($vin);
+        $newCarDto = new NewCarDto();
+        $newCarDto->setStatus($status);
+        $newCarDto->setBrand($brand);
+        $newCarDto->setModel($model);
+        $newCarDto->setVin($vin);
 
-        $car = $this->carConverter->toCarDomain($carDto);
+        $newCar = $this->carConverter->toNewCarDomain($newCarDto);
 
-        $this->serviceDomain->createNewCar($car);
+        $addedCar = $this->serviceDomain->createNewCar($newCar);
+        $addedCarDto = $this->carConverter->toCarDto($addedCar);
+
         return $this->json(
             [
-                "data" => "Tutaj musi być zwrotka z objektem, który został zapisany."
+                "success" => true,
+                "data" => $addedCarDto
             ],
             Response::HTTP_CREATED
         );
@@ -78,6 +81,7 @@ class CarController extends AbstractController
 
         return $this->json(
             [
+                "success" => true,
                 "data" => $carDtoArray
             ],
             Response::HTTP_OK
@@ -91,6 +95,7 @@ class CarController extends AbstractController
         $carDto = $this->carConverter->toCarDto($carDomain);
         return $this->json(
             [
+                "success" => true,
                 "data" => $carDto
             ],
             Response::HTTP_OK
@@ -125,6 +130,7 @@ class CarController extends AbstractController
 
         return $this->json(
             [
+                "success" => true,
                 "data" => $this->carConverter->toCarDto($carDomain)
             ],
             Response::HTTP_OK
@@ -136,7 +142,9 @@ class CarController extends AbstractController
     {
         $this->serviceDomain->deleteCarById($id);
         return $this->json(
-            Response::HTTP_OK
+            [
+                "success" => true
+            ]
         );
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CarModule\Enums;
+namespace App\Module\CarModule\Enums;
 
 enum CarStatus
 {

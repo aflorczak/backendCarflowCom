@@ -1,11 +1,12 @@
 <?php
 
-namespace App\CarModule\Infrastructure\Out\Database\Service;
+namespace App\Module\CarModule\Infrastructure\Out\Database\Service;
 
-use App\CarModule\Domain\Interfaces\Memory;
-use App\CarModule\Domain\Model\CarDomain;
-use App\CarModule\Infrastructure\Out\Database\Helper\CarConverter;
-use App\CarModule\Infrastructure\Out\Database\Repository\CarRepository;
+use App\Module\CarModule\Domain\Interfaces\Memory;
+use App\Module\CarModule\Domain\Model\CarDomain;
+use App\Module\CarModule\Domain\Model\NewCarDomain;
+use App\Module\CarModule\Infrastructure\Out\Database\Helper\CarConverter;
+use App\Module\CarModule\Infrastructure\Out\Database\Repository\CarRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class SqlMemory implements Memory
@@ -22,10 +23,11 @@ class SqlMemory implements Memory
         $this->carConverter = $carConverter;
     }
 
-    public function createNewCar(CarDomain $carDomain): void
+    public function createNewCar(NewCarDomain $newCarDomain): CarDomain
     {
-        $carEntity = $this->carConverter->toEntity($carDomain);
-        $this->carRepository->save($carEntity, true);
+        $carEntity = $this->carConverter->toNewEntity($newCarDomain);
+        $addedCar = $this->carRepository->save($carEntity, true);
+        return $this->carConverter->toDomain($addedCar);
     }
 
     public function getAllCars(): array
@@ -75,9 +77,7 @@ class SqlMemory implements Memory
             $findedCar->setModel($carEntity->getModel());
             $findedCar->setVin($carEntity->getVin());
 
-            $this->carRepository->save($findedCar, true);
-
-            $responseCar = $this->carRepository->findOneBy(['id' => $carEntity->getId()]);
+            $responseCar = $this->carRepository->save($findedCar, true);
 
             return $this->carConverter->toDomain($responseCar);
         }

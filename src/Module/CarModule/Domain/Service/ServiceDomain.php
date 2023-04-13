@@ -1,9 +1,10 @@
 <?php
 
-namespace App\CarModule\Domain\Service;
+namespace App\Module\CarModule\Domain\Service;
 
-use App\CarModule\Domain\Interfaces\Memory;
-use App\CarModule\Domain\Model\CarDomain;
+use App\Module\CarModule\Domain\Interfaces\Memory;
+use App\Module\CarModule\Domain\Model\CarDomain;
+use App\Module\CarModule\Domain\Model\NewCarDomain;
 
 class ServiceDomain
 {
@@ -16,9 +17,9 @@ class ServiceDomain
         $this->memory = $memory;
     }
 
-    public function createNewCar(CarDomain $carDomain): void
+    public function createNewCar(NewCarDomain $newCarDomain): CarDomain
     {
-        $this->memory->createNewCar($carDomain);
+        return $this->memory->createNewCar($newCarDomain);
     }
 
     public function getAllCars(): array
