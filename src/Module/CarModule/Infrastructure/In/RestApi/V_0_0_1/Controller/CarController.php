@@ -3,6 +3,7 @@
 namespace App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Controller;
 
 use App\Module\CarModule\Domain\Service\ServiceDomain;
+use App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Dto\CarDto;
 use App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Dto\CarDtoForAdminModule;
 use App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Dto\NewCarDto;
 use App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Helper\CarConverter;
@@ -22,8 +23,8 @@ class CarController extends AbstractController
 
     public function __construct(
         CarConverter $carConverter,
-        ServiceDomain              $serviceDomain,
-        CarValidator               $carValidator
+        ServiceDomain $serviceDomain,
+        CarValidator $carValidator
     )
     {
         $this->carConverter = $carConverter;
@@ -43,15 +44,28 @@ class CarController extends AbstractController
         $brand = $data['brand'];
         $model = $data['model'];
         $vin = $data['vin'];
+        $mileage = $data['mileage'];
+        $fuel = $data['fuel'];
+        $numberOfSeats = $data['numberOfSeats'];
+        $numberOfDoors = $data['numberOfDoors'];
+        $bodyType = $data['bodyType'];
+        $segment = $data['segment'];
 
         $this->carValidator->statusValidator($status);
         $this->carValidator->vinValidator($vin);
+        // add validate function for added fields
 
         $newCarDto = new NewCarDto();
         $newCarDto->setStatus($status);
         $newCarDto->setBrand($brand);
         $newCarDto->setModel($model);
         $newCarDto->setVin($vin);
+        $newCarDto->setMileage($mileage);
+        $newCarDto->setFuel($fuel);
+        $newCarDto->setNumberOfSeats($numberOfSeats);
+        $newCarDto->setNumberOfDoors($numberOfDoors);
+        $newCarDto->setBodyType($bodyType);
+        $newCarDto->setSegment($segment);
 
         $newCar = $this->carConverter->toNewCarDomain($newCarDto);
 
@@ -112,17 +126,30 @@ class CarController extends AbstractController
         $brand = $data['brand'];
         $model = $data['model'];
         $vin = $data['vin'];
+        $mileage = $data['mileage'];
+        $fuel = $data['fuel'];
+        $numberOfSeats = $data['numberOfSeats'];
+        $numberOfDoors = $data['numberOfDoors'];
+        $bodyType = $data['bodyType'];
+        $segment = $data['segment'];
 
         $this->carValidator->putIdValidator($paramId, $id);
         $this->carValidator->statusValidator($status);
         $this->carValidator->vinValidator($vin);
+        // add validate function for added fields
 
-        $carDto = new CarDtoForAdminModule();
+        $carDto = new CarDto();
         $carDto->setId($id);
         $carDto->setStatus($status);
         $carDto->setBrand($brand);
         $carDto->setModel($model);
         $carDto->setVin($vin);
+        $carDto->setMileage($mileage);
+        $carDto->setFuel($fuel);
+        $carDto->setNumberOfSeats($numberOfSeats);
+        $carDto->setNumberOfDoors($numberOfDoors);
+        $carDto->setBodyType($bodyType);
+        $carDto->setSegment($segment);
 
         $car = $this->carConverter->toCarDomain($carDto);
 

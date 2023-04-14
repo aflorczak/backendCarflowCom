@@ -8,6 +8,7 @@ class CarValidator
 {
 
     // add sql Injection validator for all fields
+    // add validate functions for added fields
 
     public function statusValidator(string $status): void
     {

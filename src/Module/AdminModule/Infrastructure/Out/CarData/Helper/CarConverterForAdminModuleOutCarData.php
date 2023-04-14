@@ -15,6 +15,12 @@ class CarConverterForAdminModuleOutCarData
         $carDomainInAdminModule->setBrand($carDtoForAdminModule->getBrand());
         $carDomainInAdminModule->setModel($carDtoForAdminModule->getModel());
         $carDomainInAdminModule->setVin($carDtoForAdminModule->getVin());
+        $carDomainInAdminModule->setMileage($carDtoForAdminModule->getMileage());
+        $carDomainInAdminModule->setFuel($carDtoForAdminModule->getFuel());
+        $carDomainInAdminModule->setNumberOfSeats($carDtoForAdminModule->getNumberOfSeats());
+        $carDomainInAdminModule->setNumberOfDoors($carDtoForAdminModule->getNumberOfDoors());
+        $carDomainInAdminModule->setBodyType($carDtoForAdminModule->getBodyType());
+        $carDomainInAdminModule->setSegment($carDtoForAdminModule->getSegment());
         return $carDomainInAdminModule;
     }
 }

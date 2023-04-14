@@ -25,62 +25,197 @@ class Car
     #[ORM\Column(length: 50)]
     private ?string $vin = null;
 
+    #[ORM\Column]
+    private ?int $mileage = null;
+
+    #[ORM\Column]
+    private ?int $numberOfSeats = null;
+
+    #[ORM\Column]
+    private ?int $numberOfDoors = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $fuel = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $bodyType = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $segment = null;
+
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(int $id): self
+    /**
+     * @param int|null $id
+     */
+    public function setId(?int $id): void
     {
         $this->id = $id;
-
-        return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    public function setStatus(?string $status): self
+    /**
+     * @param string|null $status
+     */
+    public function setStatus(?string $status): void
     {
         $this->status = $status;
-        return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getBrand(): ?string
     {
         return $this->brand;
     }
 
-    public function setBrand(string $brand): self
+    /**
+     * @param string|null $brand
+     */
+    public function setBrand(?string $brand): void
     {
         $this->brand = $brand;
-
-        return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getModel(): ?string
     {
         return $this->model;
     }
 
-    public function setModel(string $model): self
+    /**
+     * @param string|null $model
+     */
+    public function setModel(?string $model): void
     {
         $this->model = $model;
-
-        return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getVin(): ?string
     {
         return $this->vin;
     }
 
-    public function setVin(string $vin): self
+    /**
+     * @param string|null $vin
+     */
+    public function setVin(?string $vin): void
     {
         $this->vin = $vin;
+    }
 
-        return $this;
+    /**
+     * @return int|null
+     */
+    public function getMileage(): ?int
+    {
+        return $this->mileage;
+    }
+
+    /**
+     * @param int|null $mileage
+     */
+    public function setMileage(?int $mileage): void
+    {
+        $this->mileage = $mileage;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNumberOfSeats(): ?int
+    {
+        return $this->numberOfSeats;
+    }
+
+    /**
+     * @param int|null $numberOfSeats
+     */
+    public function setNumberOfSeats(?int $numberOfSeats): void
+    {
+        $this->numberOfSeats = $numberOfSeats;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNumberOfDoors(): ?int
+    {
+        return $this->numberOfDoors;
+    }
+
+    /**
+     * @param int|null $numberOfDoors
+     */
+    public function setNumberOfDoors(?int $numberOfDoors): void
+    {
+        $this->numberOfDoors = $numberOfDoors;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFuel(): ?string
+    {
+        return $this->fuel;
+    }
+
+    /**
+     * @param string|null $fuel
+     */
+    public function setFuel(?string $fuel): void
+    {
+        $this->fuel = $fuel;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBodyType(): ?string
+    {
+        return $this->bodyType;
+    }
+
+    /**
+     * @param string|null $bodyType
+     */
+    public function setBodyType(?string $bodyType): void
+    {
+        $this->bodyType = $bodyType;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSegment(): ?string
+    {
+        return $this->segment;
+    }
+
+    /**
+     * @param string|null $segment
+     */
+    public function setSegment(?string $segment): void
+    {
+        $this->segment = $segment;
     }
 }

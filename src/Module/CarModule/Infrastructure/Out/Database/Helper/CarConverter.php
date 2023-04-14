@@ -16,6 +16,12 @@ class CarConverter
         $car->setBrand($newCarDomain->getBrand());
         $car->setModel($newCarDomain->getModel());
         $car->setVin($newCarDomain->getVin());
+        $car->setMileage($newCarDomain->getMileage());
+        $car->setFuel($newCarDomain->getFuel());
+        $car->setNumberOfSeats($newCarDomain->getNumberOfSeats());
+        $car->setNumberOfDoors($newCarDomain->getNumberOfDoors());
+        $car->setBodyType($newCarDomain->getBodyType());
+        $car->setSegment($newCarDomain->getSegment());
         return $car;
     }
 
@@ -27,6 +33,12 @@ class CarConverter
         $car->setBrand($carDomain->getBrand());
         $car->setModel($carDomain->getModel());
         $car->setVin($carDomain->getVin());
+        $car->setMileage($carDomain->getMileage());
+        $car->setFuel($carDomain->getFuel());
+        $car->setNumberOfSeats($carDomain->getNumberOfSeats());
+        $car->setNumberOfDoors($carDomain->getNumberOfDoors());
+        $car->setBodyType($carDomain->getBodyType());
+        $car->setSegment($carDomain->getSegment());
         return $car;
     }
 
@@ -38,6 +50,12 @@ class CarConverter
         $carDomain->setBrand($car->getBrand());
         $carDomain->setModel($car->getModel());
         $carDomain->setVin($car->getVin());
+        $carDomain->setMileage($car->getMileage());
+        $carDomain->setFuel($car->getFuel());
+        $carDomain->setNumberOfSeats($car->getNumberOfSeats());
+        $carDomain->setNumberOfDoors($car->getNumberOfDoors());
+        $carDomain->setBodyType($car->getBodyType());
+        $carDomain->setSegment($car->getSegment());
         return $carDomain;
     }
 }
