@@ -17,14 +17,19 @@ class ServiceDomain
         $this->memory = $memory;
     }
 
+    public function getCarsNumberByStatus(string $status = null): int
+    {
+        return $this->memory->getCarsNumberByStatus($status);
+    }
+
     public function createNewCar(NewCarDomain $newCarDomain): CarDomain
     {
         return $this->memory->createNewCar($newCarDomain);
     }
 
-    public function getAllCars(): array
+    public function getCarsByStatus(string $status = null): array
     {
-        return $this->memory->getAllCars();
+        return $this->memory->getCarsByStatus($status);
     }
 
     public function getCarById(int $id): CarDomain

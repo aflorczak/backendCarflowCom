@@ -1,0 +1,12 @@
+{% extends 'adminModule/base.html.twig' %}
+
+{% block body %}
+    Pojazdy<hr>
+    <nav style="display: flex; justify-content: space-around;">
+        <a href="{{ path('app_admin-module_ui_cars_all-cars') }}">Wszystkie Pojazdy</a>
+        <a href="{{ path('app_admin-module_ui_cars_active-cars') }}">Aktywne Pojazdy</a>
+        <a href="{{ path('app_admin-module_ui_cars_blocked-cars') }}">Zablokowane Pojazdy</a>
+        <a href="{{ path('app_admin-module_ui_cars_archived-cars') }}">Zarchiwizowane Pojazdy</a>
+    </nav>
+    {% block content %}{% endblock %}
+{% endblock %}

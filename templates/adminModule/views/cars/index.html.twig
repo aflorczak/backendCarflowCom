@@ -1,0 +1,70 @@
+{% extends 'adminModule/views/cars/wrapper.html.twig' %}
+
+{% block content %}
+    <div style="margin-top: 15px;">
+        Wszystkie pojazdy: {{ numberOfCars }}
+    </div>
+
+    <table style="width: 100%; margin: 25px 0;">
+        <thead style="background-color: #999999;color: white;">
+        <tr>
+            <th>Id</th>
+            <th>Status</th>
+            <th>Marka</th>
+            <th>Model</th>
+            <th>VIN</th>
+            <th colspan="3">Akcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if cars %}
+            {% for car in cars %}
+
+                {% if car.status == "ACTIVE" %}
+                    <tr style="color: green;">
+                        <td>{{ car.id }}</td>
+                        <td>{{ car.status }}</td>
+                        <td>{{ car.brand }}</td>
+                        <td>{{ car.model }}</td>
+                        <td>{{ car.vin }}</td>
+                        <td><a href="{{ path('app_admin-module_ui_cars_car-details', {id: car.id}) }}"><button style="background-color: greenyellow;">Pokaż</button></a></td>
+                        <td><button style="background-color: orange;">Edytuj</button></td>
+                        <td><a href="{{ path('app_admin-module_ui_cars_delete-car', {id: car.id}) }}"><button style="background-color: red; color: white;">Usuń</button></a></td>
+                    </tr>
+                {% endif %}
+
+                {% if car.status == "BLOCKED" %}
+                    <tr style="color: orange;">
+                        <td>{{ car.id }}</td>
+                        <td>{{ car.status }}</td>
+                        <td>{{ car.brand }}</td>
+                        <td>{{ car.model }}</td>
+                        <td>{{ car.vin }}</td>
+                        <td><a href="{{ path('app_admin-module_ui_cars_car-details', {id: car.id}) }}"><button style="background-color: greenyellow;">Pokaż</button></a></td>
+                        <td><button style="background-color: orange;">Edytuj</button></td>
+                        <td><a href="{{ path('app_admin-module_ui_cars_delete-car', {id: car.id}) }}"><button style="background-color: red; color: white;">Usuń</button></a></td>
+                    </tr>
+                {% endif %}
+
+                {% if car.status == "ARCHIVED" %}
+                    <tr style="color: red;">
+                        <td>{{ car.id }}</td>
+                        <td>{{ car.status }}</td>
+                        <td>{{ car.brand }}</td>
+                        <td>{{ car.model }}</td>
+                        <td>{{ car.vin }}</td>
+                        <td><a href="{{ path('app_admin-module_ui_cars_car-details', {id: car.id}) }}"><button style="background-color: greenyellow;">Pokaż</button></a></td>
+                        <td><button style="background-color: orange;">Edytuj</button></td>
+                        <td><a href="{{ path('app_admin-module_ui_cars_delete-car', {id: car.id}) }}"><button style="background-color: red; color: white;">Usuń</button></a></td>
+                    </tr>
+                {% endif %}
+
+            {% endfor %}
+        {% else %}
+                <td colspan="5" style="color: red;">
+                    Brak danych
+                </td>
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

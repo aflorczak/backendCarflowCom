@@ -3,7 +3,7 @@
 namespace App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Controller;
 
 use App\Module\CarModule\Domain\Service\ServiceDomain;
-use App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Dto\CarDto;
+use App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Dto\CarDtoForAdminModule;
 use App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Dto\NewCarDto;
 use App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Helper\CarConverter;
 use App\Module\CarModule\Infrastructure\In\RestApi\V_0_0_1\Helper\CarValidator;
@@ -22,8 +22,8 @@ class CarController extends AbstractController
 
     public function __construct(
         CarConverter $carConverter,
-        ServiceDomain $serviceDomain,
-        CarValidator $carValidator
+        ServiceDomain              $serviceDomain,
+        CarValidator               $carValidator
     )
     {
         $this->carConverter = $carConverter;
@@ -72,7 +72,7 @@ class CarController extends AbstractController
     {
         $carDtoArray = array();
 
-        $carDomainArray = $this->serviceDomain->getAllCars();
+        $carDomainArray = $this->serviceDomain->getCarsByStatus();
 
         foreach ($carDomainArray as $carDomain)
         {
@@ -117,7 +117,7 @@ class CarController extends AbstractController
         $this->carValidator->statusValidator($status);
         $this->carValidator->vinValidator($vin);
 
-        $carDto = new CarDto();
+        $carDto = new CarDtoForAdminModule();
         $carDto->setId($id);
         $carDto->setStatus($status);
         $carDto->setBrand($brand);

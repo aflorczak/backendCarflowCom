@@ -1,0 +1,31 @@
+{% extends 'adminModule/views/cars/wrapper.html.twig' %}
+
+{% block content %}
+    Szczegóły pojazdu o numerze id: {{ car.id }}<hr>
+    {% if car.status == "ACTIVE" %}
+        <div style="background-color: green;color: white; padding: 5px; border-radius: 5px; text-align: center;">
+            Pojazd gotowy do wydania.
+        </div>
+    {% endif %}
+
+    {% if car.status == "BLOCKED" %}
+        <div style="background-color: orange;padding: 5px; border-radius: 5px; text-align: center;">
+            Pojazd tymczasowo zablokowany.
+        </div>
+    {% endif %}
+
+    {% if car.status == "ARCHIVED" %}
+        <div style="background-color: red;padding: 5px; border-radius: 5px; text-align: center;">
+            Pojazd przeniesiony do archiwum.
+        </div>
+    {% endif %}
+
+    <div style="text-align: center;margin: 15px 0;">
+        <button style="background-color: orange;">Edytuj</button>
+        <a href="{{ path('app_admin-module_ui_cars_delete-car', {id: car.id}) }}"><button style="background-color: red; color: white;">Usuń</button></a>
+    </div>
+
+    Marka: {{ car.brand }}<br>
+    Model: {{ car.model }}<br>
+    Vin: {{ car.vin }}<br>
+{% endblock %}

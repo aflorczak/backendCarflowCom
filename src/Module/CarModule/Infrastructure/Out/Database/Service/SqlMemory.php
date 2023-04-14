@@ -23,6 +23,18 @@ class SqlMemory implements Memory
         $this->carConverter = $carConverter;
     }
 
+    public function getCarsNumberByStatus(string $status = null): int
+    {
+        if ($status)
+        {
+            return $this->carRepository->count(["status" => $status]);
+        }
+        else
+        {
+            return $this->carRepository->count([]);
+        }
+    }
+
     public function createNewCar(NewCarDomain $newCarDomain): CarDomain
     {
         $carEntity = $this->carConverter->toNewEntity($newCarDomain);
@@ -30,11 +42,18 @@ class SqlMemory implements Memory
         return $this->carConverter->toDomain($addedCar);
     }
 
-    public function getAllCars(): array
+    public function getCarsByStatus(string $status = null): array
     {
         $carDomainArray = array();
 
-        $carEntityArray = $this->carRepository->findAll();
+        if ($status)
+        {
+            $carEntityArray = $this->carRepository->findBy(["status" => $status]);
+        }
+        else
+        {
+            $carEntityArray = $this->carRepository->findAll();
+        }
 
         foreach ($carEntityArray as $carEntity)
         {
